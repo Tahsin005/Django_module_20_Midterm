@@ -1,0 +1,6 @@
+<div class="container">
+    <a href="{% url "home" %}"><button type="button" class="">All</button></a>
+    {% for brand in brands %}
+    <a href="{% url "home" brand_name=brand.name %}"><button type="button" class="">{{brand.name}}</button></a>
+    {% endfor %}
+</div>

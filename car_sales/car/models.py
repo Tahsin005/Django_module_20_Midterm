@@ -8,7 +8,7 @@ class Car(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     price = models.IntegerField()
     quantity = models.IntegerField()
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     buyers = models.ManyToManyField(User, blank=True)
         
     def __str__(self):

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <img class="" src="{{car.image.url}}" alt="Car image should be here" />
+    <div class="">
+        <h1 class="">{{car.model}} Specs</h1>
+        <div class="pt-5">
+            <p>Brand: {{car.brand}}</p>
+            <p>Price: ${{car.price}}</p>
+            <p>Available: {{car.quantity}}</p>
+            {% if user.is_authenticated and car.quantity != 0 %}
+            <a href="{% url "buy_car" pk=car.pk %}"><button type="button" class="mt-5 text-dark bg-blue">Buy Now</button>
+            {% endif %}</a>
+        </div>
+    </div>
+</div>
+{% if request.user.is_authenticated %}
+<div class="container">
+    <div class="mt-10 mb-5">
+        {% for comment in comments %}
+        <div class="mb-5">
+            <div class="gap-3">
+                <h4 class="">{{comment.name}}</h4>
+                <small class="">{{comment.created_on | timesince}} ago</small>
+            </div>
+            <p>{{comment.comment}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="mt-10">
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{comment_form | crispy}}
+                <button type="submit" class="text-white bg-blue">Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

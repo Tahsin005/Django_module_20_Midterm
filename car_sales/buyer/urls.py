@@ -6,5 +6,5 @@ urlpatterns = [
     path('accounts/login/', views.UserLoginView.as_view(), name='login'),
     path('accounts/logout/', views.userlogout, name='logout'),
     path('accounts/profile/', views.profile, name='profile'),
-    path('accounts/edit_profile/', views.EditUserView.as_view(), name='edit_profile')
+    path('accounts/edit_profile/<int:pk>', views.EditUserView.as_view(), name='edit_profile')
 ]

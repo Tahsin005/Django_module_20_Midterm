@@ -1,16 +1,4 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
 {% block content %}
-
-<div>
-    <div class="container mt-5">
-        <h1>{{user.username}}</h1>
-        <h1>{{user.first_name}} {{user.last_name}}</h1>
-        <a href="{% url 'edit_profile' pk=user.pk %}">Edit Profile</a>
-    </div>
-    
-</div>
 
 <div class="container">
     {% for car in cars %}
@@ -20,17 +8,26 @@
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2">{{car.brand}}</h5>
+                <h5 class="mb-2">{{car.brand}} {{car.model}}</h5>
             </a>
             <p class="mb-3">
-                {{car.brand}}
+                Brand: {{car.brand}}
             </p>
             <p class="mb-3">
                 Price: ${{car.price }}
             </p>
-            
+            <p class="mb-3">
+                Available: {{car.quantity}}
+            </p>
+            <a href="{% url "car_detail" pk=car.pk %}" class="">
+                View Details
+               
+            </a>
         </div>
     </div>
     {% endfor %}
 </div>
-{% endblock %}
+
+{% endblock content %}
+
+

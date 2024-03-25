@@ -31,9 +31,10 @@ class CarDetail(DetailView):
         return context
                 
         
-
+lst = []
 def update_quantity(request, pk):
     car = get_object_or_404(Car, pk=pk)
+    lst.append(car)
     car.quantity -= 1
     car.buyers.add(request.user)
     car.save()
