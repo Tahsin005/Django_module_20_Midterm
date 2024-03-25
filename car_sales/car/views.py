@@ -9,7 +9,6 @@ class CarDetail(DetailView):
     pk_url_kwarg = 'pk'
     template_name = "car_detail.html"
     
-    
     def post(self, request, *args, **kwargs):
         comment_form = AddCommentForm(data=self.request.POST)
         car = self.get_object()
@@ -31,10 +30,8 @@ class CarDetail(DetailView):
         return context
                 
         
-lst = []
-def update_quantity(request, pk):
+def buy_car(request, pk):
     car = get_object_or_404(Car, pk=pk)
-    lst.append(car)
     car.quantity -= 1
     car.buyers.add(request.user)
     car.save()

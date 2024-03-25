@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from car.models import Car
+from django.contrib import messages
 # Create your views here.
 class CreateUserView(CreateView):
     model = User
